@@ -13,6 +13,8 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 )
 
+const useLastNamespace = "^"
+
 func NewCompleter() (*Completer, error) {
 	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
 	loader := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
@@ -53,6 +55,7 @@ func NewCompleter() (*Completer, error) {
 
 type Completer struct {
 	namespace     string
+	lastNamespace string
 	namespaceList *corev1.NamespaceList
 	client        *kubernetes.Clientset
 }
@@ -83,9 +86,14 @@ func (c *Completer) Complete(d prompt.Document) []prompt.Suggest {
 	}
 
 	namespace := checkNamespaceArg(d)
+	if namespace == useLastNamespace {
+		namespace = c.lastNamespace
+	}
 	if namespace == "" {
 		namespace = c.namespace
 	}
+	// cache the namespace
+	c.lastNamespace = namespace
 
 	commandArgs, skipNext := excludeOptions(args)
 	if skipNext {
