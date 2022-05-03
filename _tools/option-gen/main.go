@@ -44,7 +44,7 @@ func convert() error {
 		fmt.Fprintln(f, "")
 		fmt.Fprintf(f, "var %s = []prompt.Suggest{\n", variableName)
 		for _, s := range suggests {
-			fmt.Fprintf(f, "%#v,\n", s)
+			fmt.Fprintf(f, "%s,\n", s.String())
 		}
 		fmt.Fprintln(f, "}")
 	}

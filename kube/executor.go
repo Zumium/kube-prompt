@@ -11,15 +11,19 @@ import (
 )
 
 func Executor(s string) {
+	// 忽略空行
 	s = strings.TrimSpace(s)
 	if s == "" {
 		return
-	} else if s == "quit" || s == "exit" {
-		fmt.Println("Bye!")
-		os.Exit(0)
-		return
 	}
 
+	// quit、exit是退出命令
+	if s == "quit" || s == "exit" {
+		fmt.Println("Bye!")
+		os.Exit(0)
+	}
+
+	// 调用的外部kubectl实际执行命令
 	cmd := exec.Command("/bin/sh", "-c", "kubectl "+s)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
@@ -27,7 +31,6 @@ func Executor(s string) {
 	if err := cmd.Run(); err != nil {
 		fmt.Printf("Got error: %s\n", err.Error())
 	}
-	return
 }
 
 func ExecuteAndGetResult(s string) string {
@@ -45,6 +48,6 @@ func ExecuteAndGetResult(s string) string {
 		debug.Log(err.Error())
 		return ""
 	}
-	r := string(out.Bytes())
+	r := out.String()
 	return r
 }

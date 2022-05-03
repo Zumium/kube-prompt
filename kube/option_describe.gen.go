@@ -7,14 +7,16 @@ import (
 )
 
 var describeOptions = []prompt.Suggest{
-	prompt.Suggest{Text: "--all-namespaces", Description: "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace."},
-	prompt.Suggest{Text: "-f", Description: "Filename, directory, or URL to files containing the resource to describe"},
-	prompt.Suggest{Text: "--filename", Description: "Filename, directory, or URL to files containing the resource to describe"},
-	prompt.Suggest{Text: "--include-extended-apis", Description: "If true, include definitions of new APIs via calls to the API server. [default true]"},
-	prompt.Suggest{Text: "--include-uninitialized", Description: "If true, the kubectl command applies to uninitialized objects. If explicitly set to false, this flag overrides other flags that make the kubectl commands apply to uninitialized objects, e.g., \"--all\". Objects with empty metadata.initializers are regarded as initialized."},
-	prompt.Suggest{Text: "-R", Description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory."},
-	prompt.Suggest{Text: "--recursive", Description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory."},
-	prompt.Suggest{Text: "-l", Description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)"},
-	prompt.Suggest{Text: "--selector", Description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)"},
-	prompt.Suggest{Text: "--show-events", Description: "If true, display events related to the described object."},
+	{Text: "-A", Description: "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace."},
+	{Text: "--all-namespaces", Description: "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace."},
+	{Text: "--chunk-size", Description: "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future."},
+	{Text: "-f", Description: "Filename, directory, or URL to files containing the resource to describe"},
+	{Text: "--filename", Description: "Filename, directory, or URL to files containing the resource to describe"},
+	{Text: "-k", Description: "Process the kustomization directory. This flag can't be used together with -f or -R."},
+	{Text: "--kustomize", Description: "Process the kustomization directory. This flag can't be used together with -f or -R."},
+	{Text: "-R", Description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory."},
+	{Text: "--recursive", Description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory."},
+	{Text: "-l", Description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)"},
+	{Text: "--selector", Description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)"},
+	{Text: "--show-events", Description: "If true, display events related to the described object."},
 }

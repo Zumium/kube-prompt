@@ -7,12 +7,15 @@ import (
 )
 
 var execOptions = []prompt.Suggest{
-	prompt.Suggest{Text: "-c", Description: "Container name. If omitted, the first container in the pod will be chosen"},
-	prompt.Suggest{Text: "--container", Description: "Container name. If omitted, the first container in the pod will be chosen"},
-	prompt.Suggest{Text: "-p", Description: "Pod name"},
-	prompt.Suggest{Text: "--pod", Description: "Pod name"},
-	prompt.Suggest{Text: "-i", Description: "Pass stdin to the container"},
-	prompt.Suggest{Text: "--stdin", Description: "Pass stdin to the container"},
-	prompt.Suggest{Text: "-t", Description: "Stdin is a TTY"},
-	prompt.Suggest{Text: "--tty", Description: "Stdin is a TTY"},
+	{Text: "-c", Description: "Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen"},
+	{Text: "--container", Description: "Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen"},
+	{Text: "-f", Description: "to use to exec into the resource"},
+	{Text: "--filename", Description: "to use to exec into the resource"},
+	{Text: "--pod-running-timeout", Description: "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running"},
+	{Text: "-q", Description: "Only print output from the remote session"},
+	{Text: "--quiet", Description: "Only print output from the remote session"},
+	{Text: "-i", Description: "Pass stdin to the container"},
+	{Text: "--stdin", Description: "Pass stdin to the container"},
+	{Text: "-t", Description: "Stdin is a TTY"},
+	{Text: "--tty", Description: "Stdin is a TTY"},
 }
